@@ -1,0 +1,54 @@
+<h1>Seja bem vindo ao curso de Angular</h1>
+
+<h4 class="text-danger">{{ anuncio }}</h4>
+
+<div class="class" style="width: 18rem">
+  <img [src]="foto" class="card-img-top" alt="..." />
+  <div class="card-body">
+    <h5 class="card-title">
+      {{ nomeProduto | uppercase }}
+      <span *ngIf="promocao; else elseBlock" class="badge badge-success">
+        Promoção
+      </span>
+      <ng-template #elseBlock>
+        <span class="badge badge-primary">Aproveite</span>
+      </ng-template>
+    </h5>
+    <p class="card-text">
+      Identificação: {{ idProduto | number: "2.0-0" }} <br />
+      Validade: {{ dataValidade | date: 'shortDate' }}
+    </p>
+    <a href="#" class="btn btn-primary float-right"> {{precoProduto | currency: "BRL" }} </a>
+  </div>
+</div>
+
+<div class="class" style="width: fit-content;">
+  <table class="table table-responsive table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Nome</th>
+        <th>Validade</th>
+        <th>Valor</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let prod of listaProdutos">
+      <td>{{ prod.id }}</td>
+      <td>{{ prod.nome }}</td>
+      <td>{{ prod.validade | date: "shortDate" }}</td>
+      <td>{{ prod.preco | currency: "BRL" }}</td>
+      <td>
+        <button class="btn btn-warning">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-danger m1-2">
+          <i class="fa fa-trash-o" aria-hidden="true"></i>
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
